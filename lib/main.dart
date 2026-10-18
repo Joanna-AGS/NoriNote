@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+
 
 void main() {
   runApp(const KantinKuApp());
@@ -696,35 +698,38 @@ class MenuScreen extends StatelessWidget {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
-
         selectedItemColor: const Color(0xFFE0A900),
-
         unselectedItemColor: const Color(0xFF94A3B8),
-
         selectedFontSize: 11,
-
         unselectedFontSize: 10,
-
         type: BottomNavigationBarType.fixed,
-
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomeScreen(),
+              ),
+            );
+          }
+        },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.check_box_outlined),
             label: 'To-do List',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.note_outlined),
             label: 'Note',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_month_outlined),
             label: 'Schedule',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.quiz_outlined),
             label: 'Quiz',
