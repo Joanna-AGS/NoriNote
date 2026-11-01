@@ -516,7 +516,81 @@ class MenuScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+    children: [
+        // WEEK 14: LOCAL STORAGE GREETING CARD
+Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(24),
+  decoration: BoxDecoration(
+    color: const Color(0xFFFFF8E8),
+    borderRadius: BorderRadius.circular(20),
+    border: Border.all(
+      color: const Color(0xFFFFD95A),
+      width: 2,
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.08),
+        blurRadius: 8,
+        offset: const Offset(0, 4),
+      ),
+    ],
+  ),
+  child: Column(
+    children: [
+      const Icon(
+        Icons.waving_hand,
+        size: 55,
+        color: Color(0xFFF8D978),
+      ),
+      const SizedBox(height: 15),
+
+      const Text(
+        'WELCOME TO NORINOTE!',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF78AFC4),
+        ),
+        textAlign: TextAlign.center,
+      ),
+
+      const SizedBox(height: 12),
+
+      Text(
+        'Hello, $userName! 💛',
+        style: const TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF0E7C86),
+        ),
+      ),
+      const SizedBox(height: 12),
+      const Text(
+        'Success comes from working consistently.',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Color(0xFF78AFC4),
+          fontSize: 14,
+        ),
+      ),
+
+      const SizedBox(height: 15),
+
+      const Text(
+        'Your profile name is saved in Local Storage! 💾',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 12,
+          color: Colors.grey,
+        ),
+       ),
+     ],
+  ),
+),
+
+const SizedBox(height: 20),
+          
             Container(
               width: double.infinity,
               height: 155,
