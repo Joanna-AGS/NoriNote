@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
-
+import 'services/storage_helper.dart';
 
 void main() {
   runApp(const KantinKuApp());
@@ -116,18 +116,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       elevation: 2,
                     ),
-                    onPressed: () {
-                      final name = _nameController.text.trim().isEmpty
-                          ? 'AGS Student'
-                          : _nameController.text.trim();
+                    
+onPressed: () async {
+  final name = _nameController.text.trim().isEmpty
+      ? 'AGS Student'
+      : _nameController.text.trim();
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MenuScreen(userName: name),
-                        ),
-                      );
-                    },
+  await StorageHelper.saveUserName(name);
+
+  if (!context.mounted) return;
+
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => MenuScreen(userName: name),
+    ),
+  );
+},
+
                     child: const Text(
                       'Log In',
                       style: TextStyle(
@@ -414,9 +420,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         elevation: 2,
                       ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          final userName = _nameController.text.trim();
+                      onPressed: () async {
+  if (_formKey.currentState!.validate()) {
+    final userName = _nameController.text.trim();
+
+    await StorageHelper.saveUserName(userName);
+
+    if (!context.mounted) return;
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

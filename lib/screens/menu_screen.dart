@@ -18,7 +18,6 @@ class MenuScreen extends StatefulWidget {
   // [CHANGE HERE]: Receives current cart data from HomeScreen
   final List<Map<String, dynamic>> cartSaatIni;
   final String? userName;
-
   const MenuScreen({
     super.key,
     this.cartSaatIni = const [],
