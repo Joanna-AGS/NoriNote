@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'services/storage_helper.dart';
+import 'team_crud_template.dart';
 
 void main() {
   runApp(const KantinKuApp());
@@ -768,8 +769,17 @@ const SizedBox(height: 20),
               children: [
                 OutlinedButton(onPressed: () {}, child: const Text('New note')),
 
-                OutlinedButton(onPressed: () {}, child: const Text('New task')),
-
+                OutlinedButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const TeamCrudScreen(),
+      ),
+    );
+  },
+  child: const Text('New task'),
+),
                 OutlinedButton(
                   onPressed: () {},
                   child: const Text('View quiz'),
