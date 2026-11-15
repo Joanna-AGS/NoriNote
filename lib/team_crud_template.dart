@@ -231,7 +231,7 @@ class _TeamCrudScreenState extends State<TeamCrudScreen> {
     super.dispose();
   }
 
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F2EC),
@@ -239,18 +239,15 @@ class _TeamCrudScreenState extends State<TeamCrudScreen> {
         title: Text(appTitle),
         backgroundColor: themeColor,
         foregroundColor: Colors.white,
-        elevation: 2,
         actions: [
           IconButton(
             icon: const Icon(Icons.account_circle),
-            tooltip: 'Change Profile Name (Week 14)',
             onPressed: _showChangeNameDialog,
           ),
         ],
       ),
-    );
+
       body: SafeArea(
-        child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -436,6 +433,8 @@ class _TeamCrudScreenState extends State<TeamCrudScreen> {
     );
   }
 }
+
+// Optional standalone runner so students can test this screen directly
 
 // Optional standalone runner so students can test this screen directly
 void main() {
