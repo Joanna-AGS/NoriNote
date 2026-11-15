@@ -121,32 +121,39 @@ class _TeamCrudScreenState extends State<TeamCrudScreen> {
 
   /// Week 15: CREATE (Add an item to list and save to disk)
   Future<void> _addItem() async {
-    final String text = _itemInputController.text.trim();
-    if (text.isEmpty) return;
+  final String text = _itemInputController.text.trim();
 
-    setState(() {
-      _items.add(text);
-    });
-
-    _itemInputController.clear();
-
-    // Persist to disk (solving app amnesia)
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setStringList(_itemsKey, _items);
-    } catch (_) {}
-
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Added $itemNoun: "$text"'),
-          backgroundColor: themeColor,
-          duration: const Duration(seconds: 1),
-        ),
-      );
-    }
+  if (text.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Please enter a task first!'),
+        backgroundColor: Colors.red,
+      ),
+    );
+    return;
   }
 
+  setState(() {
+    _items.add(text);
+  });
+
+  _itemInputController.clear();
+
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(_itemsKey, _items);
+  } catch (_) {}
+
+  if (mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Added $itemNoun: "$text"'),
+        backgroundColor: themeColor,
+        duration: const Duration(seconds: 1),
+      ),
+    );
+  }
+}
   /// Week 15: DELETE (Remove an item by row index and update disk)
   Future<void> _deleteItem(int index) async {
     final String removedText = _items[index];
@@ -241,7 +248,9 @@ class _TeamCrudScreenState extends State<TeamCrudScreen> {
           ),
         ],
       ),
+    );
       body: SafeArea(
+        child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
